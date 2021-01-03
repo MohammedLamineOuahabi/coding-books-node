@@ -1,0 +1,33 @@
+{
+  "name": "reactjs-books",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "sass": "node-sass  -rw sass -o public/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dompurify": "^2.2.2",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "jsdom": "^16.4.0",
+    "marked": "^0.8.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.3",
+    "morgan": "^1.10.0",
+    "slugify": "^1.4.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  }
+}
