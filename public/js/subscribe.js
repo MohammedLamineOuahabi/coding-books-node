@@ -8,7 +8,7 @@ subscribeSubmit.addEventListener('click', function (e) {
       ? console.log('enter your email please.')
       : ((e = {
           method: 'POST',
-          body: JSON.stringify({ email: subscribeEmail.value, list: 'reactjs-books', js: !0 }),
+          body: JSON.stringify({ email: subscribeEmail.value, list: 'coding-books', js: !0 }),
           headers: { 'Content-Type': 'application/json' }
         }),
         fetch('https://my-mail-chimp.herokuapp.com/api/v1/subscribes', e).then(function (e) {

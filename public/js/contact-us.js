@@ -19,7 +19,7 @@ msgSubmit.addEventListener('click', function (e) {
             username: msgUsername.value,
             email: msgEmail.value,
             message: msgMessage.value,
-            list: 'reactjs-books',
+            list: 'coding-books',
             js: !0
           }),
           headers: { 'Content-Type': 'application/json' }
