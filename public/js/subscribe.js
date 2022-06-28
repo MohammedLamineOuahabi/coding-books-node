@@ -8,7 +8,7 @@ subscribeSubmit.addEventListener('click', function (e) {
       ? console.log('enter your email please.')
       : ((e = {
           method: 'POST',
-          body: JSON.stringify({ email: subscribeEmail.value, list: 'coding-books', js: !0 }),
+          body: JSON.stringify({ email: subscribeEmail.value }),
           headers: { 'Content-Type': 'application/json' }
         }),
         fetch('/subscribe', e).then(function (e) {

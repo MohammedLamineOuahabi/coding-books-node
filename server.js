@@ -1,5 +1,4 @@
 import express from 'express';
-import mongoose from 'mongoose';
 import morgan from 'morgan';
 import fetch from 'node-fetch';
 // ******* load env vars for dev env  *******
@@ -37,7 +36,8 @@ app.get('/privacy-policy', async (req, res) => {
   res.render('privacy', { page_name: 'privacy', notes: 'notes' });
 });
 app.post('/subscribe', async (req, res) => {
-  if (!req.body || !req.body.email) return res.status(201).json({ success: false });
+  if (!req.body || !req.body.email)
+    return res.status(201).json({ success: false, message: 'no data' });
   let config = {
     method: 'POST',
     body: JSON.stringify({ email: req.body.email, list: 'coding-books' }),
