@@ -11,7 +11,7 @@ subscribeSubmit.addEventListener('click', function (e) {
           body: JSON.stringify({ email: subscribeEmail.value, list: 'coding-books', js: !0 }),
           headers: { 'Content-Type': 'application/json' }
         }),
-        fetch('https://my-mail-chimp.herokuapp.com/api/v1/subscribes', e).then(function (e) {
+        fetch('/subscribe', e).then(function (e) {
           e.ok
             ? (console.log('thank you for subscribing.'),
               toBeHide.classList.add('fadout'),

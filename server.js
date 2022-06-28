@@ -1,28 +1,20 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-
-//const connectDB = require('./config/db.js');
-
-//const Note = require('./models/noteModel');
-//const noteRouter = require('./routes/noteRoutes');
-///const methodOverride = require('method-override');
-
+import express from 'express';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
+import fetch from 'node-fetch';
 // ******* load env vars for dev env  *******
-require('dotenv').config();
-//connectDB();
+import 'dotenv/config';
 
 // ******* init express app *****************
 const app = express();
+app.use(express.json());
 app.use(express.static('public'));
 // ******* MIDDLEWARE ************************
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: false }));
-///app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.set('view engine', 'ejs');
+///app.use(methodOverride('_method'));
 
 // *******   ROUTES   ************************
-///app.use('/notes', noteRouter);
 
 app.get('/', async (req, res) => {
   //const notes = await Note.find().sort({ createdAt: 'desc' });
@@ -44,9 +36,21 @@ app.get('/privacy-policy', async (req, res) => {
   //const notes = await Note.find().sort({ createdAt: 'desc' });
   res.render('privacy', { page_name: 'privacy', notes: 'notes' });
 });
+app.post('/subscribe', async (req, res) => {
+  if (!req.body || !req.body.email) return res.status(201).json({ success: false });
+  let config = {
+    method: 'POST',
+    body: JSON.stringify({ email: req.body.email, list: 'coding-books' }),
+    headers: { 'Content-Type': 'application/json' }
+  };
+  const response = await fetch('https://my-mail-chimp.herokuapp.com/api/v1/subscribes', config);
+  if (!response.ok) return res.status(500).json({ success: false });
+  //throw new Error(`unexpected response ${response.statusText}`);
+  return res.status(201).json({ success: true });
+});
 
 // *********  listening  *****************
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
   console.log('Server running on port ' + port);
