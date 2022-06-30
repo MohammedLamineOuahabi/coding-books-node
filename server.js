@@ -43,7 +43,11 @@ app.post('/subscribe', async (req, res) => {
     body: JSON.stringify({ email: req.body.email, list: 'coding-books' }),
     headers: { 'Content-Type': 'application/json' }
   };
-  const response = await fetch('https://my-mail-chimp.herokuapp.com/api/v1/subscribes', config);
+  const response = await fetch(
+    'https://my-subscriptions-system.herokuapp.com/api/v1/subscribes',
+    config
+  );
+  //console.log(response);
   if (!response.ok) return res.status(500).json({ success: false });
   //throw new Error(`unexpected response ${response.statusText}`);
   return res.status(201).json({ success: true });
